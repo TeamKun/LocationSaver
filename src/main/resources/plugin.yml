@@ -1,4 +1,4 @@
 name: @name@
 version: @version@
-main: @MainClass@
+main: net.kunmc.lab.locationsaver.LocationSaver
 api-version: 1.16
