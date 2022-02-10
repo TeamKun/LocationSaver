@@ -65,4 +65,13 @@ public class LSManager {
   public static void teleport(CommandSender sender, String name) {
     locationList.get(name).teleport(sender);
   }
+
+  public static boolean rename(String oldName, String newName) {
+    if (!locationList.rename(oldName, newName)) {
+      return false;
+    }
+
+    csvManager.save(locationList);
+    return true;
+  }
 }

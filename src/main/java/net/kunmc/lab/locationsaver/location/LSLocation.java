@@ -90,4 +90,8 @@ public class LSLocation {
             .concat(locZ)
     );
   }
+
+  public void rename(String newName) {
+    this.name = newName;
+  }
 }

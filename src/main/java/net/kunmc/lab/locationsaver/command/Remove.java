@@ -13,14 +13,14 @@ public class Remove extends Command {
         for (String s : LSManager.nameList()) {
           suggestionBuilder.suggest(s);
         }
-      }, null).executes(ctx -> {
+      }, ctx -> {
         String locationName = ctx.getArgs().get(0);
         if (LSManager.removeLocation(locationName)) {
           ctx.success(locationName.concat("を削除しました。"));
           return;
         }
 
-        ctx.fail(locationName.concat("は登録されていません。"));
+        ctx.fail(locationName.concat("は存在しません。"));
       });
     });
   }

@@ -11,6 +11,8 @@ public class Main extends Command {
     children(configCommand,
         new Save("save"),
         new Remove("remove"),
-        new List("list"));
+        new List("list"),
+        new Rename("rename")
+    );
   }
 }

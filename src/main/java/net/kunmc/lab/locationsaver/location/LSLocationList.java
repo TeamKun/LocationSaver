@@ -97,4 +97,19 @@ public class LSLocationList {
     }
     return null;
   }
+
+  /**
+   * 登録を変更する
+   *
+   * @return 変更成功/失敗
+   */
+  public boolean rename(String oldName, String newName) {
+    LSLocation location = get(oldName);
+    if (location == null) {
+      return false;
+    }
+
+    location.rename(newName);
+    return true;
+  }
 }
