@@ -2,7 +2,9 @@ package net.kunmc.lab.locationsaver.Logic;
 
 import java.util.List;
 import net.kunmc.lab.locationsaver.file.CsvManager;
+import net.kunmc.lab.locationsaver.location.LSLocation;
 import net.kunmc.lab.locationsaver.location.LSLocationList;
+import net.kunmc.lab.locationsaver.util.DecorationConst;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 
@@ -36,6 +38,28 @@ public class LSManager {
 
   public static List<String> nameList() {
     return locationList.nameList();
+  }
+
+  public static void showList(CommandSender sender) {
+    sender.sendMessage(
+        DecorationConst.GREEN
+            .concat("登録件数：")
+            .concat(String.valueOf(locationList.enableList().size()))
+            .concat("件")
+    );
+
+    for (LSLocation location : locationList.enableList()) {
+      sender.sendMessage(
+          DecorationConst.GREEN
+              .concat(location.name())
+              .concat("　；　")
+              .concat("x=").concat(location.locX()).concat(",")
+              .concat("y").concat(location.locY()).concat(",")
+              .concat("z=").concat(location.locZ()).concat(",")
+              .concat(location.worldType().typeName).concat("｜")
+              .concat("保存者：").concat(location.setterName())
+      );
+    }
   }
 
   public static void teleport(CommandSender sender, String name) {

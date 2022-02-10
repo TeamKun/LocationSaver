@@ -33,12 +33,20 @@ public class LSLocationList {
     return this.list;
   }
 
-  public List<String> nameList() {
-    List<String> nameList = new ArrayList<>();
+  public List<LSLocation> enableList() {
+    List<LSLocation> enableList = new ArrayList<>();
     for (LSLocation location : this.list) {
       if (!location.isDeleted()) {
-        nameList.add(location.name());
+        enableList.add(location);
       }
+    }
+    return enableList;
+  }
+
+  public List<String> nameList() {
+    List<String> nameList = new ArrayList<>();
+    for (LSLocation location : enableList()) {
+      nameList.add(location.name());
     }
     return nameList;
   }

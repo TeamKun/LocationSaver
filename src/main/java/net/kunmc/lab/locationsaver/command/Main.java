@@ -8,6 +8,9 @@ public class Main extends Command {
 
   public Main(@NotNull String name, ConfigCommand configCommand) {
     super(name);
-    children(configCommand, new Save("save"), new Remove("remove"));
+    children(configCommand,
+        new Save("save"),
+        new Remove("remove"),
+        new List("list"));
   }
 }
