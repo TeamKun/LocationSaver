@@ -74,4 +74,13 @@ public class LSManager {
     csvManager.save(locationList);
     return true;
   }
+
+  public static boolean reset(String locationName, Player sender) {
+    if (!locationList.reset(locationName, sender)) {
+      return false;
+    }
+
+    csvManager.save(locationList);
+    return true;
+  }
 }

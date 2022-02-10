@@ -94,4 +94,13 @@ public class LSLocation {
   public void rename(String newName) {
     this.name = newName;
   }
+
+  public void reset(Player setter) {
+    Location location = setter.getLocation();
+    this.locX = String.valueOf(location.getBlockX());
+    this.locY = String.valueOf(location.getBlockY());
+    this.locZ = String.valueOf(location.getBlockZ());
+    this.worldType = LSWorldType.getByWorldName(location.getWorld().getName());
+    this.setterName = setter.getName();
+  }
 }

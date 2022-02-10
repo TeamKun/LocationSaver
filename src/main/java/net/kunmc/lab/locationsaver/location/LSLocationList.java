@@ -99,7 +99,7 @@ public class LSLocationList {
   }
 
   /**
-   * 登録を変更する
+   * 登録名を変更する
    *
    * @return 変更成功/失敗
    */
@@ -110,6 +110,21 @@ public class LSLocationList {
     }
 
     location.rename(newName);
+    return true;
+  }
+
+  /**
+   * 座標を変更する
+   *
+   * @return 変更成功/失敗
+   */
+  public boolean reset(String locationName, Player setter) {
+    LSLocation location = get(locationName);
+    if (location == null) {
+      return false;
+    }
+
+    location.reset(setter);
     return true;
   }
 }
