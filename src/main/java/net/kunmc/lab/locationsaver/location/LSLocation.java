@@ -1,5 +1,6 @@
 package net.kunmc.lab.locationsaver.location;
 
+import java.util.Locale;
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
 import org.bukkit.command.CommandSender;
@@ -27,7 +28,7 @@ public class LSLocation {
     this.locX = String.valueOf(x);
     this.locY = String.valueOf(y);
     this.locZ = String.valueOf(z);
-    this.worldType = LSWorldType.getByWorldName(worldTypeName);
+    this.worldType = LSWorldType.valueOf(worldTypeName.toUpperCase(Locale.ROOT));
     this.setterName = sender;
     this.isDeleted = Boolean.valueOf(isDeleted);
   }
@@ -40,6 +41,7 @@ public class LSLocation {
     this.locZ = String.valueOf(location.getBlockZ());
     this.worldType = LSWorldType.getByWorldName(location.getWorld().getName());
     this.setterName = setter.getName();
+    setter.sendMessage(location.getWorld().getName());
   }
 
   public String name() {
@@ -77,7 +79,7 @@ public class LSLocation {
   public void teleport(CommandSender target) {
     Bukkit.dispatchCommand(Bukkit.getConsoleSender(),
         "execute in "
-            .concat(this.worldType.typeName)
+            .concat(this.worldType.name().toLowerCase(Locale.ROOT))
             .concat(" run tp ")
             .concat(target.getName())
             .concat(" ")

@@ -7,6 +7,7 @@ import java.io.FileReader;
 import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Locale;
 import net.kunmc.lab.locationsaver.LocationSaver;
 import net.kunmc.lab.locationsaver.location.LSLocation;
 import net.kunmc.lab.locationsaver.location.LSLocationList;
@@ -129,7 +130,7 @@ public class CsvManager {
         printWriter.print(",");
         printWriter.print(location.locZ());
         printWriter.print(",");
-        printWriter.print(location.worldType());
+        printWriter.print(location.worldType().name().toLowerCase(Locale.ROOT));
         printWriter.print(",");
         printWriter.print(location.setterName());
         printWriter.print(",");

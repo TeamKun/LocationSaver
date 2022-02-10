@@ -20,7 +20,7 @@ public class Remove extends Command {
           return;
         }
 
-        ctx.fail(locationName.concat("登録されていない名前です。"));
+        ctx.fail(locationName.concat("は登録されていません。"));
       });
     });
   }

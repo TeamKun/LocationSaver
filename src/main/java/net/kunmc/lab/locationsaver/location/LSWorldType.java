@@ -1,10 +1,11 @@
 package net.kunmc.lab.locationsaver.location;
 
 public enum LSWorldType {
-  OVER_WORLD("overworld"),
-  NETHER("the_nether"),
-  THE_END("the_end");
+  OVERWORLD("world"),
+  THE_NETHER("world_nether"),
+  THE_END("world_the_end");
 
+  
   public String typeName;
 
   LSWorldType(String typeName) {
@@ -17,6 +18,6 @@ public enum LSWorldType {
         return value;
       }
     }
-    return LSWorldType.OVER_WORLD;
+    return LSWorldType.OVERWORLD;
   }
 }
