@@ -23,7 +23,7 @@ public class LSManager {
       return false;
     }
 
-    csvManager.save(locationList);
+    saveCsv();
     return true;
   }
 
@@ -32,7 +32,7 @@ public class LSManager {
       return false;
     }
 
-    csvManager.save(locationList);
+    saveCsv();
     return true;
   }
 
@@ -71,7 +71,7 @@ public class LSManager {
       return false;
     }
 
-    csvManager.save(locationList);
+    saveCsv();
     return true;
   }
 
@@ -80,7 +80,11 @@ public class LSManager {
       return false;
     }
 
-    csvManager.save(locationList);
+    saveCsv();
     return true;
+  }
+
+  public static void saveCsv() {
+    csvManager.save(locationList);
   }
 }

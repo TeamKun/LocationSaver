@@ -1,14 +1,13 @@
 package net.kunmc.lab.locationsaver.command;
 
 import dev.kotx.flylib.command.Command;
-import net.kunmc.lab.configlib.ConfigCommand;
 import org.jetbrains.annotations.NotNull;
 
 public class Main extends Command {
 
-  public Main(@NotNull String name, ConfigCommand configCommand) {
+  public Main(@NotNull String name) {
     super(name);
-    children(configCommand,
+    children(
         new Save("save"),
         new Remove("remove"),
         new List("list"),
