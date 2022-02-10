@@ -91,7 +91,7 @@ public class LSLocationList {
    */
   public LSLocation get(String name) {
     for (LSLocation location : this.list) {
-      if (location.name().equalsIgnoreCase(name)) {
+      if (location.name().equalsIgnoreCase(name) && !location.isDeleted()) {
         return location;
       }
     }
