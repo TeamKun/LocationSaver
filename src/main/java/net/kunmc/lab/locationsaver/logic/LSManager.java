@@ -1,4 +1,4 @@
-package net.kunmc.lab.locationsaver.Logic;
+package net.kunmc.lab.locationsaver.logic;
 
 import java.util.List;
 import net.kunmc.lab.locationsaver.file.CsvManager;
@@ -41,25 +41,46 @@ public class LSManager {
   }
 
   public static void showList(CommandSender sender) {
+
+    if (locationList.enableList().size() == 0) {
+      sender.sendMessage(DecorationConst.RED + "座標が登録されていません");
+      return;
+    }
+    sender.sendMessage(DecorationConst.GREEN + "登録された座標を表示します");
     sender.sendMessage(
-        DecorationConst.GREEN
-            .concat("登録件数：")
+        "登録件数："
+            .concat(DecorationConst.YELLOW)
             .concat(String.valueOf(locationList.enableList().size()))
+            .concat(DecorationConst.RESET)
             .concat("件")
     );
 
     for (LSLocation location : locationList.enableList()) {
+      sender.sendMessage("-----------------------------------------------");
       sender.sendMessage(
-          DecorationConst.GREEN
+          DecorationConst.AQUA
               .concat(location.name())
-              .concat("　；　")
-              .concat("x=").concat(location.locX()).concat(",")
-              .concat("y").concat(location.locY()).concat(",")
-              .concat("z=").concat(location.locZ()).concat(",")
-              .concat(location.worldType().typeName).concat("｜")
-              .concat("保存者：").concat(location.setterName())
+      );
+      sender.sendMessage(
+          "X= "
+              .concat(DecorationConst.YELLOW).concat(location.locX())
+              .concat(DecorationConst.RESET).concat(",")
+              .concat("Y= ")
+              .concat(DecorationConst.YELLOW).concat(location.locY())
+              .concat(DecorationConst.RESET).concat(",")
+              .concat("Z= ")
+              .concat(DecorationConst.YELLOW).concat(location.locZ())
+              .concat(DecorationConst.RESET)
+              .concat(" | ")
+              .concat(DecorationConst.LIGHT_PURPLE).concat(location.worldType().typeName)
+      );
+      sender.sendMessage(
+          "保存者： "
+              .concat(DecorationConst.YELLOW)
+              .concat(location.setterName())
       );
     }
+    sender.sendMessage("-----------------------------------------------");
   }
 
   public static void teleport(CommandSender sender, String name) {
@@ -85,6 +106,8 @@ public class LSManager {
   }
 
   public static void saveCsv() {
-    csvManager.save(locationList);
+    if (csvManager != null) {
+      csvManager.save(locationList);
+    }
   }
 }

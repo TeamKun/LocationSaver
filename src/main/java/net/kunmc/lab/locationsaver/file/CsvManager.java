@@ -8,6 +8,7 @@ import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
+import java.util.Objects;
 import net.kunmc.lab.locationsaver.LocationSaver;
 import net.kunmc.lab.locationsaver.location.LSLocation;
 import net.kunmc.lab.locationsaver.location.LSLocationList;
@@ -31,7 +32,7 @@ public class CsvManager {
   }
 
   private boolean existFile() {
-    for (File file : LocationSaver.plugin.getDataFolder().listFiles()) {
+    for (File file : Objects.requireNonNull(LocationSaver.plugin.getDataFolder().listFiles())) {
       if (file.getName().equals(FILE_NAME)) {
         return true;
       }
@@ -47,21 +48,7 @@ public class CsvManager {
 
       printWriter = new PrintWriter(csv);
       // ヘッダー
-      printWriter.print(CsvIndex.NAME.name());
-      printWriter.print(",");
-      printWriter.print(CsvIndex.LOC_X.name());
-      printWriter.print(",");
-      printWriter.print(CsvIndex.LOC_Y.name());
-      printWriter.print(",");
-      printWriter.print(CsvIndex.LOC_Z.name());
-      printWriter.print(",");
-      printWriter.print(CsvIndex.WORLD_TYPE.name());
-      printWriter.print(",");
-      printWriter.print(CsvIndex.SETTER.name());
-      printWriter.print(",");
-      printWriter.print(CsvIndex.IS_DELETED.name());
-
-      printWriter.println();
+      writeCSVHeader(printWriter);
     } catch (FileNotFoundException e) {
       e.printStackTrace();
     } finally {
@@ -105,42 +92,65 @@ public class CsvManager {
 
       printWriter = new PrintWriter(csv);
       // ヘッダー
-      printWriter.print(CsvIndex.NAME.name());
-      printWriter.print(",");
-      printWriter.print(CsvIndex.LOC_X.name());
-      printWriter.print(",");
-      printWriter.print(CsvIndex.LOC_Y.name());
-      printWriter.print(",");
-      printWriter.print(CsvIndex.LOC_Z.name());
-      printWriter.print(",");
-      printWriter.print(CsvIndex.WORLD_TYPE.name());
-      printWriter.print(",");
-      printWriter.print(CsvIndex.SETTER.name());
-      printWriter.print(",");
-      printWriter.print(CsvIndex.IS_DELETED.name());
-
-      printWriter.println();
+      writeCSVHeader(printWriter);
 
       for (LSLocation location : locationList.list()) {
-        printWriter.print(location.name());
-        printWriter.print(",");
-        printWriter.print(location.locX());
-        printWriter.print(",");
-        printWriter.print(location.locY());
-        printWriter.print(",");
-        printWriter.print(location.locZ());
-        printWriter.print(",");
-        printWriter.print(location.worldType().name().toLowerCase(Locale.ROOT));
-        printWriter.print(",");
-        printWriter.print(location.setterName());
-        printWriter.print(",");
-        printWriter.print(location.isDeleted());
-        printWriter.println();
+        writeCSVRow(
+            printWriter,
+            location.name(),
+            location.locX(),
+            location.locY(),
+            location.locZ(),
+            location.worldType().name().toLowerCase(Locale.ROOT),
+            location.setterName(),
+            String.valueOf(location.isDeleted())
+        );
       }
     } catch (FileNotFoundException e) {
       e.printStackTrace();
     } finally {
       printWriter.close();
     }
+  }
+
+  private PrintWriter writeCSVHeader(PrintWriter printWriter) {
+    return writeCSVRow(
+        printWriter,
+        CsvIndex.NAME.name(),
+        CsvIndex.LOC_X.name(),
+        CsvIndex.LOC_Y.name(),
+        CsvIndex.LOC_Z.name(),
+        CsvIndex.WORLD_TYPE.name(),
+        CsvIndex.SETTER.name(),
+        CsvIndex.IS_DELETED.name()
+    );
+  }
+
+  private PrintWriter writeCSVRow(
+      PrintWriter printWriter,
+      String name,
+      String locX,
+      String locY,
+      String locZ,
+      String worldType,
+      String setter,
+      String isDeleted) {
+    printWriter.print(name);
+    printWriter.print(",");
+    printWriter.print(locX);
+    printWriter.print(",");
+    printWriter.print(locY);
+    printWriter.print(",");
+    printWriter.print(locZ);
+    printWriter.print(",");
+    printWriter.print(worldType);
+    printWriter.print(",");
+    printWriter.print(setter);
+    printWriter.print(",");
+    printWriter.print(isDeleted);
+
+    printWriter.println();
+
+    return printWriter;
   }
 }

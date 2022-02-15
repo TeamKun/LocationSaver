@@ -5,14 +5,15 @@ import dev.kotx.flylib.command.CommandContext;
 import net.kunmc.lab.locationsaver.logic.LSManager;
 import org.jetbrains.annotations.NotNull;
 
-public class List extends Command {
+public class Reload extends Command {
 
-  public List(@NotNull String name) {
+  public Reload(@NotNull String name) {
     super(name);
   }
 
   @Override
   public void execute(@NotNull CommandContext ctx) {
-    LSManager.showList(ctx.getSender());
+    LSManager.init();
+    ctx.success("座標リストをリロードしました");
   }
 }

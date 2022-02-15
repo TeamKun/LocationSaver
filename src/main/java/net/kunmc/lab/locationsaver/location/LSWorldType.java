@@ -4,7 +4,6 @@ public enum LSWorldType {
   OVERWORLD("world"),
   THE_NETHER("world_nether"),
   THE_END("world_the_end");
-
   
   public String typeName;
 

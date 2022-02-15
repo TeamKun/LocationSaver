@@ -2,7 +2,7 @@ package net.kunmc.lab.locationsaver.command;
 
 import dev.kotx.flylib.command.Command;
 import dev.kotx.flylib.command.arguments.StringArgument.Type;
-import net.kunmc.lab.locationsaver.Logic.LSManager;
+import net.kunmc.lab.locationsaver.logic.LSManager;
 import org.jetbrains.annotations.NotNull;
 
 public class Save extends Command {

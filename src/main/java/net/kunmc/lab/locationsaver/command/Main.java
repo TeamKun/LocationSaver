@@ -12,7 +12,8 @@ public class Main extends Command {
         new Remove("remove"),
         new List("list"),
         new Rename("rename"),
-        new Reset("reset")
+        new Reset("reset"),
+        new Reload("reload")
     );
   }
 }

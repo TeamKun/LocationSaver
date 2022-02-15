@@ -1,7 +1,7 @@
 package net.kunmc.lab.locationsaver.command;
 
 import dev.kotx.flylib.command.Command;
-import net.kunmc.lab.locationsaver.Logic.LSManager;
+import net.kunmc.lab.locationsaver.logic.LSManager;
 import org.jetbrains.annotations.NotNull;
 
 public class Rename extends Command {
