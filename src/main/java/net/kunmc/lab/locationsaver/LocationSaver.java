@@ -13,7 +13,7 @@ public final class LocationSaver extends JavaPlugin {
   @Override
   public void onEnable() {
     plugin = this;
-    
+
     // csvロード
     LSManager.init();
 

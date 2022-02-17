@@ -4,7 +4,9 @@ import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
+import java.io.IOException;
 import java.io.PrintWriter;
+import java.nio.file.Files;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
@@ -19,7 +21,7 @@ public class CsvManager {
 
   private File csv;
 
-  public CsvManager() {
+  public CsvManager() throws IOException {
     if (!this.existFile()) {
       this.create();
     } else {
@@ -31,12 +33,21 @@ public class CsvManager {
     this.csv = new File(LocationSaver.plugin.getDataFolder(), FILE_NAME);
   }
 
-  private boolean existFile() {
+  private boolean existFile() throws IOException {
+    LocationSaver plugin = LocationSaver.plugin;
+
+    // ディレクトリ作成
+    if (!new File(plugin.getDataFolder().getAbsolutePath()).exists()) {
+      Files.createDirectory(plugin.getDataFolder().toPath());
+    }
+
+    // csv存在チェック
     for (File file : Objects.requireNonNull(LocationSaver.plugin.getDataFolder().listFiles())) {
       if (file.getName().equals(FILE_NAME)) {
         return true;
       }
     }
+
     return false;
   }
 

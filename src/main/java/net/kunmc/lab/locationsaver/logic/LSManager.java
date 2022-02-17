@@ -1,5 +1,6 @@
 package net.kunmc.lab.locationsaver.logic;
 
+import java.io.IOException;
 import java.util.List;
 import net.kunmc.lab.locationsaver.file.CsvManager;
 import net.kunmc.lab.locationsaver.location.LSLocation;
@@ -14,7 +15,11 @@ public class LSManager {
   private static CsvManager csvManager;
 
   public static void init() {
-    csvManager = new CsvManager();
+    try {
+      csvManager = new CsvManager();
+    } catch (IOException e) {
+      e.printStackTrace();
+    }
     locationList = new LSLocationList(csvManager.getStringArray());
   }
 
