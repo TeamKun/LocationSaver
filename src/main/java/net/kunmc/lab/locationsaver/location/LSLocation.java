@@ -41,7 +41,6 @@ public class LSLocation {
     this.locZ = String.valueOf(location.getBlockZ());
     this.worldType = LSWorldType.getByWorldName(location.getWorld().getName());
     this.setterName = setter.getName();
-    setter.sendMessage(location.getWorld().getName());
   }
 
   public String name() {
