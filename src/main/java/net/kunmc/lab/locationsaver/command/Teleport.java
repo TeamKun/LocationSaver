@@ -10,13 +10,9 @@ public class Teleport extends Command {
   public Teleport(@NotNull String name) {
     super(name);
     permission(Permission.getEVERYONE());
-    
+
     usage(usageBuilder -> {
-      usageBuilder.stringArgument("name", suggestionBuilder -> {
-        for (String s : LSManager.nameList()) {
-          suggestionBuilder.suggest(s);
-        }
-      }, null).executes(ctx -> {
+      usageBuilder.selectionArgument("name", LSManager.nameList(), ctx -> {
         // コンソールからの入力を拒否
         if (ctx.getPlayer() == null) {
           ctx.fail("このコマンドはコンソールからは実行できません");

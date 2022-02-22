@@ -89,7 +89,11 @@ public class LSManager {
   }
 
   public static void teleport(CommandSender sender, String name) {
-    locationList.get(name).teleport(sender);
+    try {
+      locationList.get(name).teleport(sender);
+    } catch (NullPointerException e) {
+      sender.sendMessage(DecorationConst.RED.concat(name).concat("は存在しません"));
+    }
   }
 
   public static boolean rename(String oldName, String newName) {
